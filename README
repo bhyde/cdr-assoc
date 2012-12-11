@@ -1,11 +1,11 @@
 Cdr-assoc is a ASDF Common Lisp library which provides a package, CDR-ASSOC,
 which exports an accessor function CDR-ASSOC, e.g. (cdr (assoc key alist ...))
-and along with a setf method for that accessor.
+along with a setf method for that accessor.
 
 For example.
 
   * (defvar *inventory* '((:apples . 3) (:pears . 7)))
-  *inventory
+  *inventory*
   * (cdr-assoc :apples *inventory*)
   3
   * (incf (cdr-assoc :apples *inventory*))
@@ -15,14 +15,13 @@ For example.
   * (cdr-assoc :grapes *inventory*)
   nil
   * (setf (cdr-assoc :grapes *inventory*) 31)
-  7
+  31
   * *inventory*
   ((:grapes . 31) (:apples . 4) (:pears . 7))
   *
 
-This is all very analagous to what you can do with getf; but
-sadly we don't have an optional default value to return if
-the assoc comes back nil
+This is all very analagous to what you can do with getf.
 
-
-  
+BUG: Sadly we do not handle the default value yet.  I.e.
+  (incf (cdr-assoc :carrots *inventory 0))
+does not work.
